@@ -12,6 +12,7 @@ namespace Full_GRASP_And_SOLID
     {
         private TimerClient client;
 
+
         private Timer timer;
 
         public void Register(int timeOut, TimerClient client)
@@ -25,5 +26,7 @@ namespace Full_GRASP_And_SOLID
             this.client.TimeOut();
             this.timer.Change(Timeout.Infinite, Timeout.Infinite);
         }
+
+
     }
 }

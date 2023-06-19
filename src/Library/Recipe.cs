@@ -7,12 +7,17 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace Full_GRASP_And_SOLID
 {
     public class Recipe : IRecipeContent // Modificado por DIP
     {
         // Cambiado por OCP
         private IList<BaseStep> steps = new List<BaseStep>();
+
+        public bool Cooked { get; private set; } = false;  // Parte dos
+
+        public TimeRecipe timer = new TimeRecipe();
 
         public Product FinalProduct { get; set; }
 
@@ -61,6 +66,24 @@ namespace Full_GRASP_And_SOLID
             }
 
             return result;
+        }
+        // Parte uno
+        public int GetCookTime()
+        {
+           int sumTimePasos = 0;
+
+           foreach (BaseStep step in this.steps)
+           {
+            sumTimePasos += step.Time;
+           }
+           return sumTimePasos;
+        }
+
+        // Parte tres
+        public void Cook()
+        {
+            this.timer.GetTimeOut(this.GetCookTime());
+            Cooked = true;
         }
     }
 }
